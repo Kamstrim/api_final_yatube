@@ -1,4 +1,23 @@
-# api_final
+### Описание:
+
+API для Yatube.
+
+#### Функционал:
+
+* Подписка и отписка от авторизованного пользователя;
+* Авторизованный пользователь просматривает посты, создавёт новые, удаляет и изменяет их;
+* Просмотр сообществ;
+* Комментирование, просмотр, удаление и обновление комментариев;
+* Фльтрация по полям.
+
+#### Документация по адресу:
+```
+http://localhost:8000/redoc/
+```
+#### Стек
+
+[![Python](https://img.shields.io/badge/-Python-464641?style=flat-square&logo=Python)](https://www.python.org/)
+[![Django](https://img.shields.io/badge/Django-464646?style=flat-square&logo=django)](https://www.djangoproject.com/)
 
 ### Как запустить проект:
 
@@ -50,4 +69,39 @@ python3 manage.py migrate
 
 ```
 python3 manage.py runserver
+```
+
+### Примеры запросов
+
+Получение токена
+
+Отправить POST-запрос на адрес `api/v1/jwt/create/` и передать 2 поля в `data`:
+
+1. `username` - имя пользователя.
+2. `password` - пароль пользователя.
+
+Создание поста
+
+Отправить POST-запрос на адрес `api/v1/posts/` и передать обязательное поле `text`, в заголовке указать `Authorization`:`Bearer <токен>`.
+
+1. Пример запроса:
+
+   ```json
+   {
+     "text": "Мой первый пост."
+   }
+   ```
+   
+2. Пример ответа:
+
+   ```json
+   {
+     "id": 2,
+     "author": "Stas",
+     "text": "Мой первый пост",
+     "pub_date": "2023-08-09T11:31:22.024183Z",
+     "image": null,
+     "group": null
+   }
+   ```
 
